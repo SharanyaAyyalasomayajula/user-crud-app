@@ -10,15 +10,29 @@ export default function App() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   
 
-  // Fetch all users from JSON-server
-   const fetchUsers = async () => {
+  // Fetch all users from JSON-server - local
+//    const fetchUsers = async () => {
+//   try {
+//     const res = await fetch('http://localhost:5000/users')
+//     if (!res.ok) throw new Error('Failed to fetch users from server')
+//     const data: User[] = await res.json()
+//     setUsers(data)
+//   } catch (err) {
+//     console.error('Failed to fetch users', err)
+//   }
+// }
+// for - NETLIFY
+const fetchUsers = async () => {
   try {
     const res = await fetch('http://localhost:5000/users')
-    if (!res.ok) throw new Error('Failed to fetch users from server')
-    const data: User[] = await res.json()
+
+    if (!res.ok) throw new Error('API not available')
+
+    const data = await res.json()
     setUsers(data)
-  } catch (err) {
-    console.error('Failed to fetch users', err)
+  } catch {
+    // On Netlify: do nothing (state starts empty)
+    console.warn('API unavailable, using local state')
   }
 }
 
@@ -28,21 +42,42 @@ export default function App() {
     fetchUsers();
   }, []);
 
-  // Add new user (POST)
- const handleAddUser = async (user: User) => {
+  // Add new user (POST)-local
+//  const handleAddUser = async (user: User) => {
+//   try {
+//     const res = await fetch('http://localhost:5000/users', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(user),
+//     })
+//     if (!res.ok) throw new Error('Failed to add user')
+//     const newUser: User = await res.json()
+//     setUsers(prev => [...prev, newUser])
+//     setView('list') // switch to list after submit
+//   } catch (err) {
+//     console.error('Failed to add user', err)
+//   }
+// }
+
+//For prod - NETLIFY
+const handleAddUser = async (user: User) => {
   try {
     const res = await fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     })
-    if (!res.ok) throw new Error('Failed to add user')
-    const newUser: User = await res.json()
+
+    if (!res.ok) throw new Error('API not available')
+
+    const newUser = await res.json()
     setUsers(prev => [...prev, newUser])
-    setView('list') // switch to list after submit
-  } catch (err) {
-    console.error('Failed to add user', err)
+  } catch {
+    // This runs on Netlify
+    setUsers(prev => [...prev, { ...user, id: Date.now() }])
   }
+
+  setView('list')
 }
 
 

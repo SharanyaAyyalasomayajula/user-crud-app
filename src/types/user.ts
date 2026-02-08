@@ -1,5 +1,5 @@
 export type User = {
-  id?: string;        // optional because backend will generate it
+  id?: number;        // optional because backend will generate it
   firstName: string;
   lastName: string;
   phone: string;
