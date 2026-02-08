@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "9753",
+      "firstName": "John",
+      "lastName": "Salvatore",
+      "phone": "8524569514",
+      "email": "johns@gmail.com"
+    },
+    {
+      "id": "7f79",
+      "firstName": "Shiva",
+      "lastName": "A",
+      "phone": "8080502055",
+      "email": "shiva22@gmail.com"
+    },
+    {
+      "id": "262d",
+      "firstName": "Sharanya",
+      "lastName": "A",
+      "phone": "8524569514",
+      "email": "ayysolasharanya@gmail.com"
+    }
+  ]
+}
