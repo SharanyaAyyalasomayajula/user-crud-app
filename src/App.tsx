@@ -13,7 +13,7 @@ export default function App() {
   // Fetch all users from JSON-server - local
 //    const fetchUsers = async () => {
 //   try {
-//     const res = await fetch('http://localhost:5000/users')
+//     const res = await fetch('https://user-crud-backend-pyfx.onrender.com/users')
 //     if (!res.ok) throw new Error('Failed to fetch users from server')
 //     const data: User[] = await res.json()
 //     setUsers(data)
@@ -24,7 +24,7 @@ export default function App() {
 // for - NETLIFY
 const fetchUsers = async () => {
   try {
-    const res = await fetch('http://localhost:5000/users')
+    const res = await fetch('https://user-crud-backend-pyfx.onrender.com/users')
 
     if (!res.ok) throw new Error('API not available')
 
@@ -46,7 +46,7 @@ const fetchUsers = async () => {
   //  uncomment this for local set-up
 //  const handleAddUser = async (user: User) => {
 //   try {
-//     const res = await fetch('http://localhost:5000/users', {
+//     const res = await fetch('https://user-crud-backend-pyfx.onrender.com/users', {
 //       method: 'POST',
 //       headers: { 'Content-Type': 'application/json' },
 //       body: JSON.stringify(user),
@@ -63,7 +63,7 @@ const fetchUsers = async () => {
 //For prod - NETLIFY
 const handleAddUser = async (user: User) => {
   try {
-    const res = await fetch('http://localhost:5000/users', {
+    const res = await fetch('https://user-crud-backend-pyfx.onrender.com/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
@@ -87,7 +87,7 @@ const handleAddUser = async (user: User) => {
   if (editingUser && editingUser.id) {
     // Update existing user in JSON-server
     try {
-      const res = await fetch(`http://localhost:5000/users/${editingUser.id}`, {
+      const res = await fetch(`https://user-crud-backend-pyfx.onrender.com/users/${editingUser.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
@@ -119,7 +119,7 @@ const handleAddUser = async (user: User) => {
   const handleDeleteUser = async (userToDelete: User) => {
   if (!userToDelete.id) return
   try {
-    const res = await fetch(`http://localhost:5000/users/${userToDelete.id}`, {
+    const res = await fetch(`https://user-crud-backend-pyfx.onrender.com/users/${userToDelete.id}`, {
       method: 'DELETE',
     })
     if (!res.ok) throw new Error('Failed to delete user')
