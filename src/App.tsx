@@ -42,7 +42,8 @@ const fetchUsers = async () => {
     fetchUsers();
   }, []);
 
-  // Add new user (POST)-local
+  // Add new user (POST)-
+  //  uncomment this for local set-up
 //  const handleAddUser = async (user: User) => {
 //   try {
 //     const res = await fetch('http://localhost:5000/users', {
